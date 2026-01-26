@@ -1,0 +1,16 @@
+- [ ] 9-bit adder
+    - 9bitA in
+    - 9bitB in
+    - 9bitOut out
+    - cOut out
+- [ ] 9bit rShiftReg
+    - shift in
+    - load in
+    - clear/reset in
+- [ ] 7bit complementer
+- [ ] 8bit comparator
+- [ ] 7bit down counter
+    - isZero out
+    - load in
+    - countDown
+
