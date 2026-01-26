@@ -9,7 +9,7 @@
     - clear/reset in
 - [ ] 7bit complementer
 - [ ] 8bit comparator
-- [ ] 7bit down counter
+- [x] 4bit down counter
     - isZero out
     - load in
     - countDown
