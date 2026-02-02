@@ -17,6 +17,7 @@ architecture rtl of Multiplier4bit is
 	signal pp30, pp31, pp32, pp33, pp34 : std_logic;
 	
 	signal c_o0, c_o1,c_o2,c_o3,c_o4,c_o5,c_o6,c_o7,c_o8,c_o9 : std_logic;
+	signal c_o23, c_o45, c_o56, c_o67, c_o78: std_logic;
 	--c_o 
 	
 	component fullAdder is 
@@ -68,12 +69,21 @@ begin
 		);
 	
 	--------------------- Y(3)
-		
+	
+	c_2 : fullAdder
+		port map(
+			A => c_o3,
+			B =>  c_o2,
+			c_i => '0',
+			c_o => open,
+			S => c_o23
+		);
+	
 	p1_2 : fullAdder
 		port map(
 			A => A(3) and B(0),
 			B => A(2) and B(1),
-			c_i => c_o3 or c_o2,
+			c_i => c_o23,
 			c_o => c_o4,
 			S => pp12
 		);
@@ -98,11 +108,20 @@ begin
 		
 	--------------------- Y(4)
 	
+	c_3 : fullAdder
+		port map(
+			A => c_o4,
+			B =>  c_o5,
+			c_i => c_o6,
+			c_o => c_o56,
+			S => c_o45
+		);
+	
 	p2_2 : fullAdder
 		port map(
 			A => A(3) and B(1),
 			B => A(2) and B(2),
-			c_i => c_o6 or c_o5 or c_o4,
+			c_i => c_o45,
 			c_o => c_o7,
 			S => pp22
 		);
@@ -118,21 +137,32 @@ begin
 	
 	--------------------- Y(5)
 	
+	c_4 : fullAdder
+		port map(
+			A => c_o56,
+			B =>  c_o7,
+			c_i => c_o8,
+			c_o => c_o78,
+			S => c_o67
+		);
+	
 	y_5 : fullAdder
 		port map(
 			A => A(3) and B(2),
 			B => A(2) and B(3),
-			c_i => c_o8 or c_o7,
+			c_i => c_o67,
 			c_o => c_o9,
 			S => pp32
 		);
 		
 	--------------------- Y(6)
 	
+	
+	
 	p3_3 : fullAdder
 		port map(
 			A => A(3) and B(3),
-			B => '0',
+			B => c_o78,
 			c_i => c_o9,
 			c_o => pp34,
 			S => pp33
