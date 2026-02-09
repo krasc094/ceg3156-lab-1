@@ -15,15 +15,16 @@
       devShell = with pkgs;
         mkShell {
           buildInputs = [
-            vhdl-ls # language server
+            (python3.withPackages (ps: with ps; [pip]))
+            virtualenv
 
+            vhdl-ls # language server
             ghdl # compile / simulate vhdl
             gtkwave # waveform visualizer
 
             netlistsvg
             yosys
             yosys-ghdl
-
             mermaid-cli
 
             gnumake # make
